@@ -54,8 +54,11 @@ def cam1():
             # Retrieve 'bgr' (opencv format) frame
             # cv2.imshow("rgb", inRgb.getCvFrame())
             timestamp = time.strftime("%Y%m%d_%H%M%S")
-            cv2.imwrite(f"img/frame_{timestamp}cam1.jpg", inRgb.getCvFrame())
-            insert_name(f"img/frame_{timestamp}cam1.jpg")
+            try:
+                cv2.imwrite(f"img/frame_{timestamp}cam1.jpg", inRgb.getCvFrame())
+                insert_name(f"img/frame_{timestamp}cam1.jpg")
+            except Exception:
+                pass
 
 def cam2():
     with dai.Device(pipeline,devices[1]) as device:
@@ -80,8 +83,10 @@ def cam2():
             # Retrieve 'bgr' (opencv format) frame
             # cv2.imshow("rgb", inRgb.getCvFrame())
             timestamp = time.strftime("%Y%m%d_%H%M%S")
-            cv2.imwrite(f"img/frame_{timestamp}cam2.jpg", inRgb.getCvFrame())
-            insert_name(f"img/frame_{timestamp}cam2.jpg")
-
+            try:
+                cv2.imwrite(f"img/frame_{timestamp}cam2.jpg", inRgb.getCvFrame())
+                insert_name(f"img/frame_{timestamp}cam2.jpg")
+            except Exception:
+                pass
             # if cv2.waitKey(1  ) == ord('q'):
             #     break
