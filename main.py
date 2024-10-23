@@ -45,6 +45,7 @@ def decode_everything():
                                     }
                                     #print(obj)
                                     _results.append(obj)
+                                    print(_results)
                         except Exception:
                             pass
                 
