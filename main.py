@@ -25,6 +25,7 @@ def decode_everything():
                 step=100
                 a=[]
                 _results=[]
+                wh=[]
                 for y in range(0, img_height - crop_height + 1, step):
                     for x in range(0, img_width - crop_width + 1, step):
                         # Extract the crop from the image
@@ -41,12 +42,13 @@ def decode_everything():
                                     }
                                     #print(obj)
                                     _results.append(obj)
+                                    wh.append(result)
                         except Exception:
                             pass
                 
-                data={image[4:-4]:{"total_detection":len(_results), "data":_results, "imagename":image[4:-4]}}
+                data={image[4:-4]:wh}
                 
-                requests.patch("https://comfortwall.firebaseio.com/step1.json", json=data)
+                requests.patch("https://comfortwall.firebaseio.com/ajay.json", json=data)
                 update_status_to_true(image)
                # os.system(f'curl -F "file=@{image}" http://160.238.95.111/upload')
 
