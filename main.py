@@ -51,7 +51,7 @@ def decode_everything():
                 if len(_results) >0:
                     data={image[4:-4]:_results}
                 
-                    requests.patch("https://comfortwall.firebaseio.com/ajay.json", json=data)
+                    requests.patch("https://comfortwall.firebaseio.com/step1_test.json", json=data)
                     
                 else:
                     print("no value")
