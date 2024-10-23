@@ -38,17 +38,23 @@ def decode_everything():
                                     a.append(result.text)
                                     obj ={
                                     "value":result.text,
-                                        "type":result.format.name
+                                    "type":result.format.name,
+                                    "min_height":y,
+                                    "min_width":x,
+                                    "step":512
                                     }
                                     #print(obj)
                                     _results.append(obj)
-                                    wh.append(result)
                         except Exception:
                             pass
                 
-                data={image[4:-4]:wh}
+                if len(_results) >0:
+                    data={image[4:-4]:_results}
                 
-                requests.patch("https://comfortwall.firebaseio.com/ajay.json", json=data)
+                    requests.patch("https://comfortwall.firebaseio.com/ajay.json", json=data)
+                    
+                else:
+                    print("no value")
                 update_status_to_true(image)
                # os.system(f'curl -F "file=@{image}" http://160.238.95.111/upload')
 
