@@ -31,7 +31,7 @@ camRgb.preview.link(xoutRgb.input)
 devices = dai.Device.getAllAvailableDevices()
 
 # Connect to device and start pipeline
-def cam1(db):
+def cam1():
     with dai.Device(pipeline,devices[0]) as device:
 
         print('Connected cameras:', device.getConnectedCameraFeatures())
@@ -57,7 +57,7 @@ def cam1(db):
             cv2.imwrite(f"img/frame_{timestamp}cam1.jpg", inRgb.getCvFrame())
             insert_name(f"img/frame_{timestamp}cam1.jpg")
 
-def cam2(db):
+def cam2():
     with dai.Device(pipeline,devices[1]) as device:
 
         print('Connected cameras:', device.getConnectedCameraFeatures())
