@@ -44,7 +44,7 @@ def decode_everything():
                         except Exception:
                             pass
                 
-                data={"total_detection":len(_results), "data":_results, "imagename":image[4:-4]}
+                data={image[4:-4]:{"total_detection":len(_results), "data":_results, "imagename":image[4:-4]}}
                 
                 requests.patch("https://comfortwall.firebaseio.com/step1.json", json=data)
                 update_status_to_true(image)
