@@ -59,6 +59,7 @@ def cam1():
                 insert_name(f"img/frame_{timestamp}cam1.jpg")
             except Exception:
                 pass
+            time.sleep(5)
 
 def cam2():
     with dai.Device(pipeline,devices[1]) as device:
