@@ -3,7 +3,7 @@ import sqlite3
 import requests
 import zxingcpp
 import cv2
-from .helper import (
+from helper import (
     cam1, 
     cam2, 
     fetch_names_with_status_false,
