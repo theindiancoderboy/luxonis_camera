@@ -1,6 +1,7 @@
 import depthai as dai
 import cv2
 import zxingcpp
+import numpy as np
 
 # Create a pipeline
 pipeline = dai.Pipeline()
@@ -29,7 +30,7 @@ with dai.Device(pipeline) as device:
         # Convert the frame to an OpenCV format
         frame = video_frame.getCvFrame()
 
-        # Convert the frame to grayscale (if needed by ZXingCpp)
+        # Convert the frame to grayscale (required by ZXingCpp)
         gray_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 
         # Detect QR codes using ZXingCpp
@@ -37,13 +38,18 @@ with dai.Device(pipeline) as device:
 
         # Draw rectangles around detected QR codes
         for result in results:
-            points = result.position
-            # Draw a polygon connecting the points
+            # Extract the corner points
+            points = result.position  # This is a list of (x, y) tuples
+            
+            # Convert to a numpy array
             points_np = np.array(points, dtype=np.int32).reshape((-1, 1, 2))
+            
+            # Draw a polygon connecting the points
             cv2.polylines(frame, [points_np], isClosed=True, color=(0, 255, 0), thickness=2)
+            
             # Display the decoded text near the QR code
             text = result.text
-            cv2.putText(frame, text, (points[0][0], points[0][1] - 10),
+            cv2.putText(frame, text, (points[0].x, points[0].y - 10),
                         cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2)
 
         # Display the frame with detected QR codes
