@@ -52,7 +52,7 @@ def cam1():
             # image_data = base64.b64encode(buffer).decode('utf-8')
             # response = requests.post(url, data={'image_data': image_data})
             # Retrieve 'bgr' (opencv format) frame
-            # cv2.imshow("rgb", inRgb.getCvFrame())
+            cv2.imshow("rgb", inRgb.getCvFrame())
             timestamp = time.strftime("%Y%m%d_%H%M%S")
             try:
                 cv2.imwrite(f"img/frame_{timestamp}cam1.jpg", inRgb.getCvFrame())
@@ -82,7 +82,7 @@ def cam2():
             # image_data = base64.b64encode(buffer).decode('utf-8')
             # response = requests.post(url, data={'image_data': image_data})
             # Retrieve 'bgr' (opencv format) frame
-            # cv2.imshow("rgb", inRgb.getCvFrame())
+            cv2.imshow("rgb", inRgb.getCvFrame())
             timestamp = time.strftime("%Y%m%d_%H%M%S")
             try:
                 cv2.imwrite(f"img/frame_{timestamp}cam2.jpg", inRgb.getCvFrame())
