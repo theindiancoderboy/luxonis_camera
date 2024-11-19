@@ -60,16 +60,16 @@ def decode_everything():
                # os.system(f'curl -F "file=@{image}" http://160.238.95.111/upload')
 
 thread1 = threading.Thread(target=cam1)
-thread2 = threading.Thread(target=cam2)
-thread3 = threading.Thread(target=decode_everything)
+# thread2 = threading.Thread(target=cam2)
+# thread3 = threading.Thread(target=decode_everything)
 
 # Start the threads
 thread1.start()
-thread2.start()
-thread3.start()
+# thread2.start()
+# thread3.start()
 
 
 # Keep the main thread running to allow the other threads to continue execution
 thread1.join()
-thread2.join()
-thread3.join()
+# thread2.join()
+# thread3.join()
