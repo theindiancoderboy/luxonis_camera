@@ -87,7 +87,7 @@ def cam2():
             try:
                 cv2.imwrite(f"img/frame_{timestamp}cam2.jpg", inRgb.getCvFrame())
                 insert_name(f"img/frame_{timestamp}cam2.jpg")
-            except Exception:
-                pass
+            except Exception as e:
+                print(e)
             # if cv2.waitKey(1  ) == ord('q'):
             #     break
