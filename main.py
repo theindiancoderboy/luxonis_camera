@@ -10,10 +10,11 @@ from helper import (
     update_status_to_true
 
 )
-
+import time
 
 
 def decode_everything():
+    time.sleep(10)
     while True:
         images = fetch_names_with_status_false()
         
