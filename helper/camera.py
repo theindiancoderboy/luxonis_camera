@@ -89,5 +89,6 @@ def cam2():
                 insert_name(f"img/frame_{timestamp}cam2.jpg")
             except Exception as e:
                 print(e)
+                print("=============================================================")
             # if cv2.waitKey(1  ) == ord('q'):
             #     break
