@@ -51,8 +51,9 @@ def decode_everything():
                 
                 if len(_results) >0:
                     data={image[4:-4]:_results}
+                    print(data)
                 
-                    requests.patch("https://comfortwall.firebaseio.com/adhoc/app1.json", json=data)
+                    requests.patch("https://comfortwall.firebaseio.com/adhoc/testnov27.json", json=data)
                     
                 else:
                     print("no value")
@@ -61,15 +62,15 @@ def decode_everything():
 
 thread1 = threading.Thread(target=cam1)
 # thread2 = threading.Thread(target=cam2)
-# thread3 = threading.Thread(target=decode_everything)
+thread3 = threading.Thread(target=decode_everything)
 
 # Start the threads
 thread1.start()
 # thread2.start()
-# thread3.start()
+thread3.start()
 
 
 # Keep the main thread running to allow the other threads to continue execution
 thread1.join()
 # thread2.join()
-# thread3.join()
+thread3.join()
