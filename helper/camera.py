@@ -57,8 +57,9 @@ def cam1():
             try:
                 cv2.imwrite(f"img/frame_{timestamp}cam1.jpg", inRgb.getCvFrame())
                 insert_name(f"img/frame_{timestamp}cam1.jpg")
-            except Exception:
-                pass
+            except Exception as e:
+                print(e)
+                print("======================================")
             time.sleep(5)
 
 def cam2():
