@@ -40,4 +40,5 @@ def perform_move( data):
             "Authorization": f"Bearer {token}"
         }
 
-    requests.post("https://api-dev.momenttrack.com/api/lexcorp/license_plates/move_many",headers=headers, json=data )
+    resp=requests.post("https://api-dev.momenttrack.com/api/lexcorp/license_plates/move_many",headers=headers, json=data )
+    print(resp.text)
