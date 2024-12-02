@@ -60,7 +60,7 @@ def cam1():
             except Exception as e:
                 print(e)
                 print("======================================")
-            time.sleep(5)
+            time.sleep(60)
 
 def cam2():
     with dai.Device(pipeline,devices[1]) as device:
