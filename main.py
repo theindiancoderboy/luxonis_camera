@@ -18,7 +18,7 @@ import time
 
 executor = ThreadPoolExecutor(max_workers=4)
 
-def perform_move(params):
+def perform_move_(params):
     license_plate_ids=[]
     dest_location_id=[]
     for i in params:
@@ -69,7 +69,7 @@ def decode_everything():
                 if len(_results) >0:
                     data={image[4:-4]:_results}
                     print(data)
-                    executor.submit(perform_move, _results)
+                    executor.submit(perform_move_, _results)
                     requests.patch("https://comfortwall.firebaseio.com/adhoc/testdec2101.json", json=data)
                     
                 else:
