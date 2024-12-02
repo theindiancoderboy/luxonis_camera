@@ -20,13 +20,13 @@ executor = ThreadPoolExecutor(max_workers=4)
 
 def perform_move_(params):
     license_plate_ids=[]
-    dest_location_id=[]
+    dest_location_id=None
     for i in params:
         if len(i["value"]) ==36:
             license_plate_ids.append(i["value"][i["value"].index("/")+1:])
         if len(i["value"])==22:
-            dest_location_id.append(i["value"][i["value"].index("/")+1:])
-    if len(license_plate_ids) !=0 and len(dest_location_id)!=0:
+            dest_location_id=(i["value"][i["value"].index("/")+1:])
+    if len(license_plate_ids) !=0 and dest_location_id:
         perform_move({"license_plate_ids":license_plate_ids,"dest_location_id":dest_location_id })
 
 def decode_everything():
