@@ -3,15 +3,31 @@ import sqlite3
 import requests
 import zxingcpp
 import cv2
+from concurrent.futures import ThreadPoolExecutor
 from helper import (
     cam1, 
     cam2, 
     fetch_names_with_status_false,
-    update_status_to_true
+    update_status_to_true, 
+    perform_move
+
 
 )
 import time
 
+
+executor = ThreadPoolExecutor(max_workers=4)
+
+def perform_move(params):
+    license_plate_ids=[]
+    dest_location_id=[]
+    for i in params:
+        if len(i["value"]) ==36:
+            license_plate_ids.append(i["value"])
+        if len(i["value"])==22:
+            dest_location_id.append(i["value"])
+    if len(license_plate_ids) !=0 and len(dest_location_id)==0:
+        perform_move({"license_plate_ids":license_plate_ids,"dest_location_id":dest_location_id })
 
 def decode_everything():
     time.sleep(10)
@@ -53,8 +69,8 @@ def decode_everything():
                 if len(_results) >0:
                     data={image[4:-4]:_results}
                     print(data)
-                
-                    requests.patch("https://comfortwall.firebaseio.com/adhoc/testnov27.json", json=data)
+                    executor.submit(perform_move, _results)
+                    requests.patch("https://comfortwall.firebaseio.com/adhoc/testdec2101.json", json=data)
                     
                 else:
                     print("no value")
