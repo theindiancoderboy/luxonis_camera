@@ -8,7 +8,7 @@ def gettoken():
         # Define the payload
         payload = {
             "email": "thedeveloperspace17@gmail.com",
-            "password": "Ajay@2529"
+            "password": "nopass"
         }
 
         # Send the POST request
