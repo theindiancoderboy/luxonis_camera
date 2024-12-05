@@ -32,9 +32,9 @@ def perform_move_(params):
     license_plate_ids=[]
     dest_location_id=None
     for i in params:
-        if len(i["value"]) ==36:
+        if len(i["value"]) ==32:
             license_plate_ids.append(i["value"][i["value"].index("/")+1:])
-        if len(i["value"])==22:
+        if len(i["value"])==18:
             dest_location_id=(i["value"][i["value"].index("/")+1:])
     if len(license_plate_ids) !=0 and dest_location_id and check_lps(params) ==0:
         perform_move({"license_plate_ids":license_plate_ids,"dest_location_id":dest_location_id })
