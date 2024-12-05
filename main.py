@@ -17,6 +17,16 @@ import time
 
 
 executor = ThreadPoolExecutor(max_workers=4)
+lps_list = []
+def check_lps(params):
+    a=0
+    for i in params:
+        if len(i["value"]) ==32:
+            if i["value"] not in lps_list:
+                lps_list.append(i["value"])
+            else:
+                a+=1
+    return a
 
 def perform_move_(params):
     license_plate_ids=[]
@@ -26,7 +36,7 @@ def perform_move_(params):
             license_plate_ids.append(i["value"][i["value"].index("/")+1:])
         if len(i["value"])==22:
             dest_location_id=(i["value"][i["value"].index("/")+1:])
-    if len(license_plate_ids) !=0 and dest_location_id:
+    if len(license_plate_ids) !=0 and dest_location_id and check_lps(params) ==0:
         perform_move({"license_plate_ids":license_plate_ids,"dest_location_id":dest_location_id })
 
 def decode_everything():
