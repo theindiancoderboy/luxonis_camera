@@ -25,10 +25,11 @@ camRgb.setResolution(dai.ColorCameraProperties.SensorResolution.THE_4_K)
 camRgb.preview.link(xoutRgb.input)
 
 devices = dai.Device.getAllAvailableDevices()
-display_width = 1000
-display_height = None
+
 # Connect to device and start pipeline
 def cam1():
+    display_width = 1000
+    display_height = None
     with dai.Device(pipeline,devices[0]) as device:
 
         print('Connected cameras:', device.getConnectedCameraFeatures())
