@@ -49,6 +49,8 @@ def cam1():
             # response = requests.post(url, data={'image_data': image_data})
             # Retrieve 'bgr' (opencv format) frame
             cv2.imshow("Camera Preview", inRgb.getCvFrame())
+            if cv2.waitKey(1) == ord('q'):
+                break
             timestamp = time.strftime("%Y%m%d_%H%M%S")
             try:
                 cv2.imwrite(f"img/frame_{timestamp}cam1.jpg", inRgb.getCvFrame())
@@ -57,6 +59,7 @@ def cam1():
                 print(e)
                 print("======================================")
             time.sleep(60)
+        cv2.destroyAllWindows()
 
 def cam2():
     with dai.Device(pipeline,devices[1]) as device:
