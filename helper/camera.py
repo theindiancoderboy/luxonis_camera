@@ -25,7 +25,8 @@ camRgb.setResolution(dai.ColorCameraProperties.SensorResolution.THE_4_K)
 camRgb.preview.link(xoutRgb.input)
 
 devices = dai.Device.getAllAvailableDevices()
-
+display_width = 1000
+display_height = None
 # Connect to device and start pipeline
 def cam1():
     with dai.Device(pipeline,devices[0]) as device:
@@ -48,7 +49,16 @@ def cam1():
             # image_data = base64.b64encode(buffer).decode('utf-8')
             # response = requests.post(url, data={'image_data': image_data})
             # Retrieve 'bgr' (opencv format) frame
-            cv2.imshow("Camera Preview", inRgb.getCvFrame())
+            frame=inRgb.getCvFrame()
+            original_height, original_width = frame.shape[:2]
+
+    # Calculate aspect ratio if height is not specified
+            if display_height is None:
+                aspect_ratio = original_height / original_width
+                display_height = int(display_width * aspect_ratio)
+            resized_frame = cv2.resize(frame, (display_width, display_height))
+
+            cv2.imshow("Camera Preview", resized_frame)
             if cv2.waitKey(1) == ord('q'):
                 break
             timestamp = time.strftime("%Y%m%d_%H%M%S")
