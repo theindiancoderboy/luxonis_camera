@@ -70,7 +70,7 @@ def decode_everything():
                     data={image[4:-4]:_results}
                     print(data)
                     executor.submit(perform_move_, _results)
-                    requests.patch("https://comfortwall.firebaseio.com/adhoc/testdec2101.json", json=data)
+                    requests.patch("https://comfortwall.firebaseio.com/adhoc/testdec09.json", json=data)
                     
                 else:
                     print("no value")

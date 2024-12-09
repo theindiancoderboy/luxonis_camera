@@ -12,13 +12,13 @@ def gettoken():
         }
 
         # Send the POST request
-        response = requests.post("https://api-dev.momenttrack.com/auth/default/system/login", data=payload)
+        response = requests.post("https://api.momenttrack.com/auth/default/system/login", data=payload)
 
         # Check if the request was successful
         if response.status_code == 200:
             data = response.json()
             if data.get("success") and data.get("data"):
-                return data["data"].get("access_token")
+                return data["data"].get("access_token"), data["data"].get("org_slug")
                 return {
                     "access_token": data["data"].get("access_token"),
                     "org_slug": data["data"].get("org_slug"),
@@ -35,10 +35,10 @@ def gettoken():
 
 
 def perform_move( data):
-    token=gettoken()
+    token, slug=gettoken()
     headers = {
             "Authorization": f"Bearer {token}"
         }
     print(data)
-    resp=requests.post("https://api-dev.momenttrack.com/api/lexcorp/license_plates/move_many",headers=headers, json=data )
+    resp=requests.post(f"https://api.momenttrack.com/api/{slug}/license_plates/move_many",headers=headers, json=data )
     print(resp.text)

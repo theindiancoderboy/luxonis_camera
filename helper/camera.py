@@ -3,10 +3,6 @@
 import cv2
 import depthai as dai
 import time
-import os
-import threading
-import requests
-import base64
 from .database import insert_name
 # Create pipeline
 pipeline = dai.Pipeline()
@@ -52,7 +48,7 @@ def cam1():
             # image_data = base64.b64encode(buffer).decode('utf-8')
             # response = requests.post(url, data={'image_data': image_data})
             # Retrieve 'bgr' (opencv format) frame
-            # cv2.imshow("rgb", inRgb.getCvFrame())
+            cv2.imshow("Camera Preview", inRgb.getCvFrame())
             timestamp = time.strftime("%Y%m%d_%H%M%S")
             try:
                 cv2.imwrite(f"img/frame_{timestamp}cam1.jpg", inRgb.getCvFrame())
